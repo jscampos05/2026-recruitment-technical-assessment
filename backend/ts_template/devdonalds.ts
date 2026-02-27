@@ -45,15 +45,46 @@ app.post("/parse", (req:Request, res:Response) => {
 // [TASK 1] ====================================================================
 // Takes in a recipeName and returns it in a form that 
 const parse_handwriting = (recipeName: string): string | null => {
-  // TODO: implement me
-  return recipeName
+  
+  // split for spaces
+  // trim each split
+  // filter out
+  // Recombine string
+
+  const regex = /[^a-zA-Z]/g;
+
+  // replace underscores and hyphens with whitespaces.
+  recipeName = recipeName.replace(/[_-]/g, " ");
+  const separatedWords: string[] = recipeName.split(" ");
+
+  let formattedWords = [];
+  for (let i = 0; i < separatedWords.length; i++) {
+
+    // Get rid of trailing and leading white spaces and replace any invalid chars
+    let newWord = separatedWords[i].replace(regex, "");
+    if (newWord !== "") {
+      newWord = newWord[0].toUpperCase() + newWord.slice(1).toLowerCase();
+      formattedWords.push(newWord);
+    }
+  }
+
+  if (formattedWords.length === 0) {
+    return null;
+  } else {
+    return formattedWords.join(" ");
+  }
 }
 
 // [TASK 2] ====================================================================
 // Endpoint that adds a CookbookEntry to your magical cookbook
 app.post("/entry", (req:Request, res:Response) => {
-  // TODO: implement me
-  res.status(500).send("not yet implemented!")
+  
+  // validate input 
+
+
+  // store to memory
+  
+  
 
 });
 
